@@ -6,28 +6,22 @@ SRC= src
 TESTS= $(SRC)/test
 LIB= $(SRC)/lib
 NAME=cmp_mod
-DEST= .
-BIN= $(DEST)/bin
 
 $(NAME): $(LIB)
 
-$(LIB): $(DEST)
+$(LIB): 
 		$(MAKE) -C $@ $(MAKECMDGOALS)
-
-$(DEST):
-		mkdir $(DEST)/lib
-		mkdir $(BIN)
 
 all: $(NAME) 
 
-test: $(DEST)
+test: 
 		$(MAKE) -C $(TESTS) $(MAKECMDGOALS)
-		$(BIN)/$(NAME)test
+		bin/$(NAME)test
 
 clean:
 		$(MAKE) -C $(LIB) $(MAKECMDGOALS)
 		$(MAKE) -C $(TESTS) $(MAKECMDGOALS)
-		$(RM) *.o *.mod $(BIN)/$(NAME) $(BIN)/$(NAME)test
+		$(RM) *.o *.mod bin lib
 
 .PHONY: $(LIB)
 

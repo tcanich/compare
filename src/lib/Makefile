@@ -20,7 +20,7 @@ lib:
 
 clean:
 #       rm $(BUILD)/*.mod $(BUILD)/lib$(PROG)*
-		rm *.mod *.o $(TOP)/lib/lib$(PROG).so.$(MAJV).$(MINV)
+		rm *.mod *.o 
 
 distclean: clean
 		rm $(PROG)test lib$(PROG).so.$(MAJV).$(MINV)
