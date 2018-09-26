@@ -1,15 +1,32 @@
 module cmp_mod
   implicit none
   private
-  public :: r_eq, r_gt, r_lt, r_ge, r_le
+  public :: eq, gt, lt, ge, le
 
 ! Provide functions to compare real and complex variables within a
 ! tolerance value, tolerance.
 
-! r_eq, r_gt, r_lt, r_ge, r_le
-! c_eq, c_gt, c_lt, c_ge, c_le
-
   real, parameter :: tolerance = 0.00000001
+
+  interface eq
+    module procedure r_eq, z_eq
+  end interface eq
+
+  interface gt
+    module procedure r_gt
+  end interface gt
+
+  interface lt
+    module procedure r_lt
+  end interface lt
+
+  interface ge
+    module procedure r_ge
+  end interface ge
+
+  interface le
+    module procedure r_le
+  end interface le
 
 contains
 
@@ -22,6 +39,16 @@ contains
       r_eq = .false.
     end if
   end function r_eq
+
+  logical pure function z_eq (z1, z2)
+    complex, intent(in) :: z1, z2
+
+    if (abs(z1 - z2) <= tolerance) then
+      z_eq = .true.
+    else
+      z_eq = .false.
+    end if
+  end function z_eq
 
   logical pure function r_gt (r1, r2)
     real, intent(in) :: r1, r2

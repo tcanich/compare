@@ -16,13 +16,13 @@ $(LIB): $(DEST)
 
 $(DEST):
 		mkdir $(DEST)/lib
-		mkdir $(DEST)/bin
+		mkdir $(BIN)
 
 all: $(NAME) 
 
 test: $(DEST)
 		$(MAKE) -C $(TESTS) $(MAKECMDGOALS)
-		$(DEST)/bin/test
+		$(BIN)/$(NAME)test
 
 clean:
 		$(MAKE) -C $(LIB) $(MAKECMDGOALS)

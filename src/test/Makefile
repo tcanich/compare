@@ -3,7 +3,7 @@ FCFLAGS= -I. -Wall -Wextra -pedantic -std=f2008 -ggdb -fbacktrace -ffpe-trap=zer
 FILES= mod_testing.f90 $(TOP)/src/lib/cmp_mod.f90 test.f90
 LD=ld
 LDARGS=-G
-LDFLAGS=-L$(TOP)/lib -R$(TOP)/lib
+LDFLAGS=-L$(TOP)/lib:/usr/local/lib/gcc6 -R$(TOP)/lib:/usr/local/lib/gcc6
 MAJV=0
 MINV=1
 TEST=test.f90
