@@ -27,8 +27,9 @@ if(CMAKE_Fortran_COMPILER_ID MATCHES Intel)
   set(CMAKE_Fortran_FLAGS_RELEASE "-O3")
 endif()
 
-# library to archive (libcompare.a)
-add_library(compare src/lib/compare.f90)
+# library to archive (libcompare)
+add_library(compare SHARED src/lib/compare.f90)
+set_target_properties(compare PROPERTIES INTERFACE_POSITION_INDEPENDENT_CODE ON)
 
 # tests
 enable_testing()
