@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/tcanich/compare.svg?branch=master)](https://travis-ci.com/tcanich/compare)
+
 # compare
 
 compare is a Fortran module to aid in comparison of real or complex
