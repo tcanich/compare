@@ -1,6 +1,6 @@
 program cmp_test
   use mod_testing, only: assert, initialize_tests, report_tests
-  use compare, only: eq, gt, lt, ge, le
+  use compare, only: eq, gt, lt, ge, le, setTol
   implicit none
 
   logical,dimension(:),allocatable :: tests
@@ -8,14 +8,25 @@ program cmp_test
   integer :: n,ntests
   
   n = 1
-  ntests = 23
+  ntests = 26
   call initialize_tests(tests,ntests)
+
+!
+! helper function setTol test
+!
+
+  tests(n) = assert(eq(setTol(1e-8),setTol()) .eqv. .true., 'Default tolerance')
+  n = n + 1
+  tests(n) = assert(eq(setTol(1e-6),setTol()) .eqv. .false., 'Not equal to default tolerance')
+  n = n + 1
+  tests(n) = assert(eq(setTol(1e-6),setTol(0.000001)) .eqv. .true., 'Equal not default tolerance')
+  n = n + 1
   
 !
 ! Real tests
 !
 
-  tests(n) = assert(eq(1.0,1.0) .eqv. .true., 'Real equal: 1.0 == 1.0')
+  tests(n) = assert(eq(1.0,1.0,1e-6) .eqv. .true., 'Real equal: 1.0 == 1.0')
   n = n + 1
   tests(n) = assert(eq(1.0,2.0) .eqv. .false., 'Real not equal: 1.0 /= 2.0')
   n = n + 1
