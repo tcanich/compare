@@ -6,26 +6,48 @@ compare is a Fortran module to aid in comparison of real or complex
 numbers.  The module specifies a tolerance when making the comparisons to
 determine equality or inequality.  
 
+
 ## Usage
 
 Arguments to functions must be of the same type (real or complex).
 
-Tolerance is 0.00000001.
+Default tolerance is 1e-6.
 
-eq(X,Y) -- Logical, returns true if absolute value of X - Y is less than or equal to tolerance.
+```
+eq(X,Y,[t]) -- Logical 
+  X: real or complex
+  Y: real or complex
+  t: optional, real
 
-gt(X,Y) -- Logical, returns true if X - Y is greater than tolerance.
+  Returns true if absolute value of (X - Y) is less than or equal to
+  tolerance.  Optional value t sets tolerance, otherwise 1e-6 is used.
 
-lt(X,Y) -- Logical, returns true if Y - X is greater than tolerance.
+gt(X,Y,[t]) -- Logical 
 
-ge(X,Y) -- Logical, returns true if either eq(X,Y) or gt(X,Y) is true.
+  Returns true if X - Y is greater than tolerance.
 
-le(X,Y) -- Logical, returns true if either eq(X,Y) or lt(X,Y) is true.
+lt(X,Y,[t]) -- Logical 
+
+  Returns true if Y - X is greater than tolerance.
+
+ge(X,Y,[t]) -- Logical 
+
+  Returns true if either eq(X,Y) or gt(X,Y) is true.
+
+le(X,Y,[t]) -- Logical 
+
+  Returns true if either eq(X,Y) or lt(X,Y) is true.
+
+setTol([t]) -- Real
+
+  Returns tolerance, t, or default tolerance 1e-6.
+
+```
 
 
 ```
 program test_cmp
-  use cmp_mod, only: eq, ge, le, gt, lt
+  use compare, only: eq, ge, le, gt, lt
   implicit none
 
   complex :: z1, z2
@@ -59,6 +81,12 @@ Execution produces
 Complex equal
 Real equal
 ```
+
+## Installation
+
+compare is developed with gfortran 7.3.0 and built with CMake.  
+mod_testing from wavebitscientific is needed to build to test program.
+
 
 ## Status
 
