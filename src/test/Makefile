@@ -1,6 +1,6 @@
 FC=gfortran
 FCFLAGS= -I. -Wall -Wextra -pedantic -std=f2008 -ggdb -fbacktrace -ffpe-trap=zero,overflow,underflow -fPIC
-FILES= mod_testing.f90 $(TOP)/src/lib/cmp_mod.f90 test.f90
+FILES= mod_testing.f90 $(TOP)/src/lib/compare.f90 test.f90
 LD=ld
 LDARGS=-G
 LDFLAGS=-L$(TOP)/lib:/usr/local/lib/gcc6 -R$(TOP)/lib:/usr/local/lib/gcc6

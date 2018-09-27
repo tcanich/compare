@@ -1,12 +1,12 @@
 FC=gfortran
 FCFLAGS= -I. -Wall -Wextra -pedantic -std=f2008 -ggdb -fbacktrace -ffpe-trap=zero,overflow,underflow -fPIC
-FILES= cmp_mod.f90
+FILES= compare.f90
 LD=ld
 LDARGS=-G
 LDFLAGS=-L$(TOP)/$(BUILD) -R$(TOP)/$(BUILD)
 MAJV=0
 MINV=1
-PROG=cmp_mod
+PROG=compare
 BUILD=build
 TOP=../../
 
