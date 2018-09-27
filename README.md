@@ -37,4 +37,4 @@ Execution produces
 
 ## Status
 
-Real number comparison is implemented.  Complex number comparison is not yet implemented.
+Real and complex number comparison is implemented.
