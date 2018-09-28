@@ -36,3 +36,7 @@ enable_testing()
 add_executable(compare_tests src/test/mod_testing.f90 src/test/test.f90)
 target_link_libraries(compare_tests compare)
 add_test(compare_tests bin/compare_tests)
+
+# install
+install(DIRECTORY "${CMAKE_Fortran_MODULE_DIRECTORY}" DESTINATION "${CMAKE_INSTALL_PREFIX}")
+install(DIRECTORY "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}" DESTINATION "${CMAKE_INSTALL_PREFIX}")
