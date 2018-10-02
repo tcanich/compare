@@ -9,23 +9,28 @@ module compare
 ! tolerance value, tolerance.
 
   interface eq
-    module procedure r_eq, z_eq
+    module procedure r_eq
+    module procedure z_eq
   end interface eq
 
   interface gt
-    module procedure r_gt, z_gt
+    module procedure r_gt
+    module procedure z_gt
   end interface gt
 
   interface lt
-    module procedure r_lt, z_lt
+    module procedure r_lt
+    module procedure z_lt
   end interface lt
 
   interface ge
-    module procedure r_ge, z_ge
+    module procedure r_ge
+    module procedure z_ge
   end interface ge
 
   interface le
-    module procedure r_le, z_le
+    module procedure r_le
+    module procedure z_le
   end interface le
 
 contains

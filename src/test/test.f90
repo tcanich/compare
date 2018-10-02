@@ -8,7 +8,7 @@ program cmp_test
   integer :: n,ntests
   
   n = 1
-  ntests = 26
+  ntests = 28
   call initialize_tests(tests,ntests)
 
 !
@@ -20,6 +20,10 @@ program cmp_test
   tests(n) = assert(eq(setTol(1e-6),setTol()) .eqv. .false., 'Not equal to default tolerance')
   n = n + 1
   tests(n) = assert(eq(setTol(1e-6),setTol(0.000001)) .eqv. .true., 'Equal not default tolerance')
+  n = n + 1
+  tests(n) = assert(eq(setTol(1e-6),0.000001) .eqv. .true., 'Equal bare word not default tolerance')
+  n = n + 1
+  tests(n) = assert(eq(setTol(1e-6),1e-6) .eqv. .true., 'Equal exponent notation not default tolerance')
   n = n + 1
   
 !
