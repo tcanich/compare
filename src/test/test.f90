@@ -6,9 +6,13 @@ program cmp_test
   logical,dimension(:),allocatable :: tests
   logical :: test_failed
   integer :: n,ntests
+
+  real, dimension(:), allocatable :: r_alloc_arr1, r_alloc_arr2
+  real, dimension(10) :: r_dim10_arr1, r_dim10_arr2
+  real, dimension(5) :: r_dim5_arr1, r_dim5_arr2 
   
   n = 1
-  ntests = 28
+  ntests = 34
   call initialize_tests(tests,ntests)
 
 !
@@ -55,6 +59,34 @@ program cmp_test
   tests(n) = assert(gt(2.0,1.9999999999) .eqv. .false., 'Real not greater in tolerance: 2.0 > 1.9999999999')
   n = n + 1
   tests(n) = assert(lt(1.99999999999,2.0) .eqv. .false., 'Real not less in tolerance: 1.99999999999 < 2.0')
+  n = n + 1
+
+!
+! Real array equality tests
+!
+  r_dim10_arr1 = 0.0
+  r_dim10_arr2 = 0.0
+  r_dim5_arr1 = 0.0
+  r_dim5_arr2 = 0.0
+  r_alloc_arr1 = (/0.0,0.0,0.0,0.0,0.0/)
+  r_alloc_arr2 = (/0.0,0.0,0.0,0.0,0.0/)
+
+  tests(n) = assert(eq(r_alloc_arr1, r_alloc_arr2) .eqv. .true., 'Equal allocatable same size')
+  n = n + 1
+
+  r_alloc_arr2 = (/1.0,2.0,3.0/)
+  tests(n) = assert(eq(r_alloc_arr1, r_alloc_arr2) .eqv. .false., 'Allocatable different size')
+  n = n + 1
+
+  tests(n) = assert(eq(r_dim10_arr1,r_dim10_arr2) .eqv. .true., 'Fixed same size')
+  n = n + 1
+  tests(n) = assert(eq(r_dim10_arr1, r_dim5_arr1) .eqv. .false., 'Fixed different size')
+  n = n + 1
+  tests(n) = assert(eq(r_dim5_arr1, r_alloc_arr1) .eqv. .true., 'Fixed and alloc same size')
+  n = n + 1
+
+  r_dim5_arr1 = 1.0
+  tests(n) = assert(eq(r_dim5_arr1,r_dim5_arr2) .eqv. .false., 'Fixed same size different values')
   n = n + 1
 
 !

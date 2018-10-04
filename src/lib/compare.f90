@@ -10,6 +10,7 @@ module compare
 
   interface eq
     module procedure r_eq
+    module procedure r_eq_arr
     module procedure z_eq
   end interface eq
 
@@ -67,6 +68,28 @@ contains
       z_eq = .false.
     end if
   end function z_eq
+
+  logical pure function r_eq_arr (r1,r2,t)
+    real, dimension(:), intent(in) :: r1, r2
+    real, intent(in), optional :: t
+    integer :: i
+
+    r_eq_arr = .false.
+
+    if (size(r1) /= size(r2)) then
+      return
+    else
+      do i = 1, size(r1)
+        if (eq(r1(i),r2(i),setTol(t))) then
+          r_eq_arr = .true.
+        else
+          r_eq_arr = .false.
+          return
+        end if
+      end do
+    end if
+  end function r_eq_arr
+
 
   logical pure function r_gt (r1, r2, t)
     real, intent(in) :: r1, r2
