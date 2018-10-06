@@ -11,7 +11,7 @@ determine equality or inequality.
 
 Arguments to functions must be of the same type (real or complex).
 
-Default tolerance is 1e-6.
+Default tolerance is 1e-8.
 
 ```
 eq(X,Y,[t]) -- Logical 
@@ -20,7 +20,7 @@ eq(X,Y,[t]) -- Logical
   t: optional, real
 
   Returns true if absolute value of (X - Y) is less than or equal to
-  tolerance.  Optional value t sets tolerance, otherwise 1e-6 is used.
+  tolerance.  Optional value t sets tolerance, otherwise 1e-8 is used.
 
 gt(X,Y,[t]) -- Logical 
 
@@ -47,7 +47,7 @@ setTol([t]) -- Real
 
 ```
 program test_cmp
-  use compare, only: eq, ge, le, gt, lt
+  use compare, only: eq
   implicit none
 
   complex :: z1, z2
@@ -85,9 +85,9 @@ Real equal
 ## Installation
 
 compare is developed with gfortran 7.3.0 and built with CMake.  
-mod_testing from wavebitscientific is needed to build to test program.
 
 
 ## Status
 
-Real and complex number comparison is implemented.
+Real and complex number comparison is implemented.  Same size arrays of
+real numbers may be compared for equality.
