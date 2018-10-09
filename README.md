@@ -86,6 +86,13 @@ Real equal
 
 compare is developed with gfortran 7.3.0 and built with CMake.  
 
+```
+mkdir ../compare-build
+cd ../compare-build
+cmake ../compare
+cmake --build .
+ctest
+```
 
 ## Status
 

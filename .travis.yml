@@ -7,8 +7,10 @@ addons:
       - gfortran-7
 before_script:
   - FC=gfortran-7 cmake .
-  - make
+  - cmake --build .
 script:
   - ctest
 notifications:
 email: false
+after_success:
+- bash <(curl -s https://codecov.io/bash)

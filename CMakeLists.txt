@@ -16,8 +16,8 @@ endif()
 
 # compiler flags for gfortran
 if(CMAKE_Fortran_COMPILER_ID MATCHES GNU)
-  set(CMAKE_Fortran_FLAGS_DEBUG "-O0 -g -C -fbacktrace")
-  set(CMAKE_Fortran_FLAGS_RELEASE "-O3")
+  set(CMAKE_Fortran_FLAGS_DEBUG "-O0 -g -C -Wall -Wextra -fbacktrace -fprofile-arcs -ftest-coverage")
+  set(CMAKE_Fortran_FLAGS_RELEASE "-O3 -fprofile-arcs -ftest-coverage")
 endif()
 
 # compiler flags for ifort
