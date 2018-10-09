@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/tcanich/compare.svg?branch=master)](https://travis-ci.com/tcanich/compare)
+[![Build Status](https://travis-ci.com/tcanich/compare.svg?branch=master)](https://travis-ci.com/tcanich/compare) [![codecov](https://codecov.io/gh/tcanich/compare/branch/master/graph/badge.svg)](https://codecov.io/gh/tcanich/compare)
 
 # compare
 
