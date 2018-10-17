@@ -1,4 +1,5 @@
 module compare
+  use iso_fortran_env, only: real32, real64
   implicit none
   private
   public :: eq, gt, lt, ge, le, setTol
@@ -10,6 +11,7 @@ module compare
 
   interface eq
     module procedure r_eq
+    module procedure r64_eq
     module procedure r_eq_arr
     module procedure z_eq
   end interface eq
@@ -57,6 +59,17 @@ contains
       r_eq = .false.
     end if
   end function r_eq
+
+  logical pure function r64_eq (r1, r2, t)
+    real(kind=real64), intent(in) :: r1, r2
+    real, intent(in), optional :: t
+
+    if (abs(r1 - r2) <= setTol(t)) then
+      r64_eq = .true.
+    else
+      r64_eq = .false.
+    end if
+  end function r64_eq
 
   logical pure function z_eq (z1, z2, t)
     complex, intent(in) :: z1, z2
