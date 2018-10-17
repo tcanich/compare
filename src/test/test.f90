@@ -1,6 +1,7 @@
 program cmp_test
   use mod_testing, only: assert, initialize_tests, report_tests
   use compare, only: eq, gt, lt, ge, le, setTol
+  use iso_fortran_env, only: real32, real64
   implicit none
 
   logical,dimension(:),allocatable :: tests
@@ -10,9 +11,11 @@ program cmp_test
   real, dimension(:), allocatable :: r_alloc_arr1, r_alloc_arr2
   real, dimension(10) :: r_dim10_arr1, r_dim10_arr2
   real, dimension(5) :: r_dim5_arr1, r_dim5_arr2 
-  
+
+  real(kind=real64), dimension(:), allocatable :: r64_alloc_arr1, r64_alloc_arr2
+
   n = 1
-  ntests = 34
+  ntests = 36
   call initialize_tests(tests,ntests)
 
 !
@@ -88,6 +91,23 @@ program cmp_test
   r_dim5_arr1 = 1.0
   tests(n) = assert(eq(r_dim5_arr1,r_dim5_arr2) .eqv. .false., 'Fixed same size different values')
   n = n + 1
+
+!
+! Real64 tests
+!
+  tests(n) = assert(eq(1.0_real64, 1.0_real64), 'Real64 equal')
+  n = n + 1
+  tests(n) = assert(eq(1.000000000000000000001_real64, 1.000000000000001_real64, 1e-12), 'Real64 equal tolerance')
+  n = n + 1
+
+!
+! Real64 array equality tests
+!
+  r64_alloc_arr1 = (/1.0,0.1,0.0,0.0,0.0,0.0/)
+  r64_alloc_arr2 = (/1.0,0.1,0.0,0.0,0.0,0.0/)
+
+
+  
 
 !
 ! Complex tests
