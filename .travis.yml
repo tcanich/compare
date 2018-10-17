@@ -9,7 +9,7 @@ addons:
     packages:
       - gfortran-7
 before_script:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc@6; FC=gfortran cmake .; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc@7; brew link --overwrite gcc@7; FC=gfortran cmake .; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then FC=gfortran-7 cmake .; fi
   - cmake --build .
 script:
