@@ -57,11 +57,13 @@ or
 must be of same type.  If array arguments are supplied to
 .Fn eq
 the arguments must match in type and size.
+.El
 .Bl -bullet
 The optional argument
 .Fa t
 may be used to tune the tolerance used in the comparison.  By default, this tolerance is 
 1e-8 (0.00000001).
+.El
 .Bl -bullet
 .Fn eq
 accepts arguments of types
@@ -76,11 +78,12 @@ or
 or
 .Ft complex
 .
+.El
 .Sh RETURN VALUE
 All function return .true. when the condition is true and .false. when the condition is false.
 .Sh EXAMPLES
 A simple example checking equality of two real numbers and printing the result to standard out:
-.Ip -indent -literal
+.Bd -literal -offset indent
 program test_compare
   use compare, only: eq
   implicit none
@@ -88,9 +91,10 @@ program test_compare
   write(*,*) eq(1.0,1.0)
   write(*,*) eq(2.0,1.0)
 end program test_compare
+.Ed
 .Pp
 Comparing real64 values with a non-default tolerance:
-.Ip -indent -literal
+.Bd -literal -offset indent
 program test_compare
   use compare, only: eq
   use iso_fortran_env, only: real64
@@ -99,6 +103,7 @@ program test_compare
   write(*,*) eq(1.0,1.0001,1e-2)
   write(*,*) eq(1.0_real64,1.0001_real64,1e-3)
 end program test_compare
+.Ed
 .Pp
 .Sh BUGS
 .Sh SEE ALSO

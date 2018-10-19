@@ -1,0 +1,140 @@
+<!-- Creator     : groff version 1.19.2 -->
+<!-- CreationDate: Thu Oct 18 21:48:52 2018 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p     { margin-top: 0; margin-bottom: 0; }
+       pre   { margin-top: 0; margin-bottom: 0; }
+       table { margin-top: 0; margin-bottom: 0; }
+</style>
+<title></title>
+</head>
+<body>
+
+<hr>
+
+
+<p valign="top">compare(3) FreeBSD Library Functions Manual
+compare(3)</p>
+
+<p style="margin-top: 1em" valign="top"><b>NAME</b></p>
+
+<p style="margin-left:6%;"><b>eq, gt, lt, ge, le,</b></p>
+
+<p style="margin-top: 1em" valign="top"><b>LIBRARY</b></p>
+
+<p style="margin-left:6%;">libcompare, -lcompare</p>
+
+
+<p style="margin-top: 1em" valign="top"><b>SYNOPSIS</b></p>
+
+<p style="margin-left:6%;"><b>use compare</b></p>
+
+
+<p style="margin-left:6%; margin-top: 1em"><i>logical</i></p>
+
+
+<p style="margin-left:12%;"><b>eq</b>(<i>real|real64|complex&nbsp;r1|z1</i>,
+<i>real|real64|complex&nbsp;r2|z2</i>,
+<i>[real&nbsp;t]</i>);</p>
+
+
+<p style="margin-left:6%; margin-top: 1em"><i>logical</i></p>
+
+
+<p style="margin-left:12%;"><b>gt</b>(<i>real|complex&nbsp;r1|z1</i>,
+<i>real|complex&nbsp;r2|z2</i>, <i>[real&nbsp;t]</i>);</p>
+
+
+<p style="margin-left:6%; margin-top: 1em"><i>logical</i></p>
+
+
+<p style="margin-left:12%;"><b>lt</b>(<i>real|complex&nbsp;r1|z1</i>,
+<i>real|complex&nbsp;r2|z2</i>, <i>[real&nbsp;t]</i>);</p>
+
+
+<p style="margin-left:6%; margin-top: 1em"><i>logical</i></p>
+
+
+<p style="margin-left:12%;"><b>ge</b>(<i>real|complex&nbsp;r1|z1</i>,
+<i>real|complex&nbsp;r2|z2</i>, <i>[real&nbsp;t]</i>);</p>
+
+
+<p style="margin-left:6%; margin-top: 1em"><i>logical</i></p>
+
+
+<p style="margin-left:12%;"><b>le</b>(<i>real|complex&nbsp;r1|z1</i>,
+<i>real|complex&nbsp;r2|z2</i>, <i>[real&nbsp;t]</i>);</p>
+
+
+<p style="margin-top: 1em" valign="top"><b>DESCRIPTION</b></p>
+
+<p style="margin-left:6%;">The compare family of functions
+compares real or complex numbers within a tolerance,
+<i>t</i> as described below. The <b>eq</b>() function checks
+for equality between the two arguments and returns .true. if
+the arguments are equal and .false. if they are not. These
+functions aid in the comparison of floating point numbers.
+Arguments <i>r1, r2</i> or <i>z1, z2</i> must be of same
+type. If array arguments are supplied to <b>eq</b>() the
+arguments must match in type and size.</p>
+
+<p style="margin-left:1%;">The optional argument <i>t</i>
+may be used to tune the tolerance used in the comparison. By
+default, this tolerance is 1e-8 (0.00000001).</p>
+
+<p valign="top"><b>eq</b>() accepts arguments of types
+<i>real</i> , <i>real64</i> , or <i>complex real</i> or
+<i>complex</i></p>
+
+<p style="margin-top: 1em" valign="top"><b>RETURN
+VALUE</b></p>
+
+<p style="margin-left:6%;">All function return .true. when
+the condition is true and .false. when the condition is
+false.</p>
+
+
+<p style="margin-top: 1em" valign="top"><b>EXAMPLES</b></p>
+
+<p style="margin-left:6%;">A simple example checking
+equality of two real numbers and printing the result to
+standard out:</p>
+
+<p style="margin-left:14%; margin-top: 1em">program
+test_compare <br>
+use compare, only: eq <br>
+implicit none</p>
+
+<p style="margin-left:14%; margin-top: 1em">write(*,*)
+eq(1.0,1.0) <br>
+write(*,*) eq(2.0,1.0) <br>
+end program test_compare</p>
+
+<p style="margin-left:6%; margin-top: 1em">Comparing real64
+values with a non-default tolerance:</p>
+
+<p style="margin-left:14%; margin-top: 1em">program
+test_compare <br>
+use compare, only: eq <br>
+use iso_fortran_env, only: real64 <br>
+implicit none</p>
+
+<p style="margin-left:14%; margin-top: 1em">write(*,*)
+eq(1.0,1.0001,1e-2) <br>
+write(*,*) eq(1.0_real64,1.0001_real64,1e-3) <br>
+end program test_compare</p>
+
+<p style="margin-top: 1em" valign="top"><b>BUGS <br>
+SEE ALSO</b></p>
+
+<p style="margin-left:6%;">FreeBSD&nbsp;11.2
+October&nbsp;18, 2018 FreeBSD&nbsp;11.2</p>
+<hr>
+</body>
+</html>
