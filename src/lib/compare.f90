@@ -11,9 +11,10 @@ module compare
 
   interface eq
     module procedure r_eq
+    module procedure z_eq
     module procedure r64_eq
     module procedure r_eq_arr
-    module procedure z_eq
+    module procedure r64_eq_arr
   end interface eq
 
   interface gt
@@ -103,6 +104,26 @@ contains
     end if
   end function r_eq_arr
 
+  logical pure function r64_eq_arr (r1,r2,t)
+    real(kind=real64), dimension(:), intent(in) :: r1, r2
+    real, intent(in), optional :: t
+    integer :: i
+
+    r64_eq_arr = .false.
+
+    if (size(r1) /= size(r2)) then
+      return
+    else
+      do i = 1, size(r1)
+        if (eq(r1(i),r2(i),setTol(t))) then
+          r64_eq_arr = .true.
+        else
+          r64_eq_arr = .false.
+          return
+        end if
+      end do
+    end if
+  end function r64_eq_arr
 
   logical pure function r_gt (r1, r2, t)
     real, intent(in) :: r1, r2

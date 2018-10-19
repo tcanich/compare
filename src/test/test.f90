@@ -15,7 +15,7 @@ program cmp_test
   real(kind=real64), dimension(:), allocatable :: r64_alloc_arr1, r64_alloc_arr2
 
   n = 1
-  ntests = 36
+  ntests = 38
   call initialize_tests(tests,ntests)
 
 !
@@ -106,7 +106,10 @@ program cmp_test
   r64_alloc_arr1 = (/1.0,0.1,0.0,0.0,0.0,0.0/)
   r64_alloc_arr2 = (/1.0,0.1,0.0,0.0,0.0,0.0/)
 
-
+  tests(n) = assert(eq(r64_alloc_arr1,r64_alloc_arr2), 'Real64 array equal')
+  n = n + 1
+  tests(n) = assert(eq(r64_alloc_arr1,r64_alloc_arr2,1e-2), 'Real64 array tolerance equal')
+  n = n + 1
   
 
 !
