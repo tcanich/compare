@@ -22,6 +22,7 @@ before_install:
       taskkill //IM gpg-agent.exe //F  # https://travis-ci.community/t/4967
       export PATH=/C/tools/msys64/mingw64/bin:$PATH
       export MAKE=mingw32-make  # so that Autotools can find it
+      export FC=gfortran
       ;;
   esac
 
@@ -47,7 +48,7 @@ addons:
       - gfortran-7
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then FC=gfortran-7 cmake .; cmake --build .; fi
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then $mingw64 FC=gfortran cmake .; $mingw64 FC=gfortran cmake --build .; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then $mingw64 cmake .; $mingw64 cmake --build .; fi
 script:
   - $mingw64 ctest
 notifications:
