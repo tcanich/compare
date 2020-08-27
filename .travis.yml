@@ -46,11 +46,10 @@ addons:
     packages:
       - gfortran-7
 before_script:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then FC=gfortran-7 cmake .; fi
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then FC=gfortran cmake .; FC=gfortran cmake --build .; fi
-  - cmake --build .
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then FC=gfortran-7 cmake .; cmake --build .; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then $mingw64 FC=gfortran cmake .; $mingw64 FC=gfortran cmake --build .; fi
 script:
-  - ctest
+  - $mingw64 ctest
 notifications:
   email: false
 after_success:
