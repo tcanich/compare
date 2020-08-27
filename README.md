@@ -40,7 +40,7 @@ le(X,Y,[t]) -- Logical
 
 setTol([t]) -- Real
 
-  Returns tolerance, t, or default tolerance 1e-6.
+  Returns tolerance, t, or default tolerance 1e-8.
 
 ```
 
