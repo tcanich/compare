@@ -46,8 +46,9 @@ addons:
     packages:
       - gfortran-7
 before_script:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then FC=gfortran-7 cmake .; cmake --build .; fi
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then cmake . -G "MinGW Makefiles"; cmake --build .; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then FC=gfortran-7 cmake .; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then cmake . -G "MinGW Makefiles"; fi
+  - cmake --build .
 script:
   - $mingw64 ctest
 notifications:
