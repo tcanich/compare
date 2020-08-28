@@ -9,7 +9,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-set(LIB_NAME lib${project})
+#set(LIB_NAME lib${project})
 
 file ( STRINGS "${CMAKE_SOURCE_DIR}/.VERSION" VERSION )
 string( REPLACE "." ";" VERSION_LIST ${VERSION} )
@@ -39,25 +39,25 @@ endif()
 
 # library to archive (libcompare)
 # Build shared and static libraries
-add_library(${LIB_NAME} SHARED src/lib/compare.f90)
-set_target_properties ( ${LIB_NAME}
+add_library(libcompare SHARED src/lib/compare.f90)
+set_target_properties ( libcompare
   PROPERTIES
-  OUTPUT_NAME ${LIB_NAME}
+  OUTPUT_NAME libcompare
   SOVERSION ${VERSION_MAJOR}.${VERSION_MINOR}
   INTERFACE_POSITION_INDEPENDENT_CODE ON
   VERSION ${VERSION} )
-add_library(${LIB_NAME}-static STATIC src/lib/compare.f90)
-set_target_properties ( ${LIB_NAME}-static 
+add_library(libcompare-static STATIC src/lib/compare.f90)
+set_target_properties ( libcompare-static 
   PROPERTIES 
-  OUTPUT_NAME ${LIB_NAME} 
+  OUTPUT_NAME libcompare
   VERSION ${VERSION} )
 
 # tests
 enable_testing()
 add_executable(compare_tests src/test/mod_testing.f90 src/test/test.f90)
-target_link_libraries(compare_tests ${LIB_NAME})
+target_link_libraries(compare_tests libcompare)
 add_executable(compare_tests-static src/test/mod_testing.f90 src/test/test.f90)
-target_link_libraries(compare_tests-static ${LIB_NAME}-static "-static")
+target_link_libraries(compare_tests-static libcompare-static "-static")
 
 add_test(compare_tests ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/compare_tests)
 add_test(compare_tests-static ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/compare_tests-static)
