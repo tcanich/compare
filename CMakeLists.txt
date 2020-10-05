@@ -42,14 +42,14 @@ endif()
 add_library(libcompare SHARED src/lib/compare.f90)
 set_target_properties ( libcompare
   PROPERTIES
-  OUTPUT_NAME libcompare
+  OUTPUT_NAME compare
   SOVERSION ${VERSION_MAJOR}.${VERSION_MINOR}
   INTERFACE_POSITION_INDEPENDENT_CODE ON
   VERSION ${VERSION} )
 add_library(libcompare-static STATIC src/lib/compare.f90)
 set_target_properties ( libcompare-static 
   PROPERTIES 
-  OUTPUT_NAME libcompare
+  OUTPUT_NAME compare
   VERSION ${VERSION} )
 
 # tests
