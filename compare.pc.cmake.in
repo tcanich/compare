@@ -1,0 +1,9 @@
+libdir=@INSTALL_LIB_DIR@
+includedir=@INSTALL_MOD_DIR@
+
+Name: libcompare
+Description: @PROJECT_DESCRIPTION@
+URL: @PROJECT_URL@
+Version: @PROJECT_VERSION@
+Libs: -L${libdir} -lcompare
+Cflags: -I${includedir}
