@@ -46,6 +46,7 @@ addons:
     packages:
       - gfortran-7
 before_script:
+  - if [[ "$TRAVIS_TAG" == "" ]]; then export CMAKE_BUILD_TYPE="Debug"; else export CMAKE_BUILD_TYPE="Release"; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then FC=gfortran-7 cmake .; fi
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then cmake . -G "MinGW Makefiles"; fi
   - cmake --build .

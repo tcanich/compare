@@ -22,13 +22,13 @@ file(STRINGS "URL" PROJECT_URL )
 
 # if build type not specified, default to release
 if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE "release")
+  set(CMAKE_BUILD_TYPE "Release")
 endif()
 
 # compiler flags for gfortran
 if(CMAKE_Fortran_COMPILER_ID MATCHES GNU)
   set(CMAKE_Fortran_FLAGS_DEBUG "-O0 -g -C -Wall -Wextra -fbacktrace -fprofile-arcs -ftest-coverage")
-  set(CMAKE_Fortran_FLAGS_RELEASE "-O3 -fprofile-arcs -ftest-coverage")
+  set(CMAKE_Fortran_FLAGS_RELEASE "-O3" )
 endif()
 
 # compiler flags for ifort
